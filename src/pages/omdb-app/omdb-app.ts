@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { AlertController } from 'ionic-angular';
+
+import { OmdbService } from './omdb-app.service';
+
 @Component({
   selector: 'omdb-app',
   templateUrl: './omdb-app.html',
@@ -25,6 +29,16 @@ import { HttpClient } from '@angular/common/http';
     .movie-result p {
       text-align: justify;
     }
+
+    .movie-result button {
+      width: 70%;
+    }
+
+    .movie-result table {
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+    }
   `]
 })
 export class OMDbPage {
@@ -33,14 +47,20 @@ export class OMDbPage {
   year: string;
   plot: string;
   url: string;
+
+  imdb: string;
+  rt: string;
+  mc: string;
+
   searched = false
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+    private omdbService: OmdbService,
+    private alertController: AlertController) {
 
   }
 
   search(title: string) {
-    console.log('hello!');
     this.httpClient.get(`https://www.omdbapi.com/?apikey=c9e12726&t=${title}&plot=full`, { responseType: 'text' })
       .subscribe(response => {
         const respParse = JSON.parse(response);
@@ -51,14 +71,27 @@ export class OMDbPage {
         this.year = respParse.Year;
         this.url = respParse.Poster;
         this.plot = respParse.Plot;
+
+        this.imdb = respParse.Ratings[0].Value;
+        this.rt = respParse.Ratings[1] ? respParse.Ratings[1].Value : '--';
+        this.mc = respParse.Ratings[2] ? respParse.Ratings[2].Value : '--';
       });
   }
 
   foo() {
-    console.log('Clicked Already Watched!');
+    this.omdbService.addTitleObject({
+      title: this.title,
+      imgUrl: this.url
+    });
+
+    const alert = this.alertController.create({
+      // title: `${this.title} has been added to your "Already Watched" list`,
+      subTitle: `"${this.title}" has been added to your Already Watched list`
+    });
+    alert.present();
   }
 
   bar() {
-    console.log('Clicked Add to Watch List!');
+    console.log('foo!');
   }
 }
