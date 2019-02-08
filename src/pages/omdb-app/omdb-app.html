@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>OMDb Ionic</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <input #movieTitle
+    type="text"
+    (keyup.enter)="search(movieTitle.value)"
+    placeholder="Search for a title..." />
+  <button ion-button color="primary" (click)="search(movieTitle.value)">Search</button>
+
+  <div *ngIf="searched">
+    <h2>{{ title }} ({{ year }})</h2>
+    <img [src]="url">
+  </div>
+</ion-content>
