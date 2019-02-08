@@ -1,18 +1,28 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar class="navbar">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
       <ion-title>OMDb Ionic</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <input #movieTitle
-    type="text"
-    (keyup.enter)="search(movieTitle.value)"
-    placeholder="Search for a title..." />
-  <button ion-button color="primary" (click)="search(movieTitle.value)">Search</button>
+  <div class="search-omdb" padding>
+    <input #movieTitle
+      type="text"
+      (keyup.enter)="search(movieTitle.value)"
+      placeholder="Search for a title..." 
+      padding />
+    <button ion-button color="primary" (click)="search(movieTitle.value)">Search</button>
+  </div>
 
-  <div *ngIf="searched">
+  <div *ngIf="searched" class="movie-result" padding>
     <h2>{{ title }} ({{ year }})</h2>
     <img [src]="url">
+    <p>{{ plot }}</p>
+
+    <button ion-button color="primary" (click)="foo()">Add to Already Watched</button>
+    <button ion-button color="secondary" (click)="bar()">Add to Watch List</button>
   </div>
 </ion-content>
