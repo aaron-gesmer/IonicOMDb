@@ -20,7 +20,13 @@
   </p>
   <p>
     <!-- <button ion-button color="primary" menuToggle (click)="foo()">Toggle Menu</button> -->
-    <button ion-button color="primary" (click)="foo()">Toggle Menu</button>
+    <input #movieTitle
+      type="text"
+      (keyup.enter)="search(movieTitle.value)"
+      placeholder="Search for a title..." />
+    <button ion-button color="primary" (click)="search(movieTitle.value)">Search</button>
+
+    <img [src]="url">
   </p>
 
 </ion-content>

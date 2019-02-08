@@ -6,15 +6,20 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: 'hello-ionic.html'
 })
 export class HelloIonicPage {
+
+  url: string;
   constructor(private httpClient: HttpClient) {
 
   }
 
-  foo() {
+  search(title: string) {
     console.log('hello!');
-    this.httpClient.get('https://www.omdbapi.com/?apikey=c9e12726&t=poop&plot=full', { responseType: 'text' })
+    this.httpClient.get(`https://www.omdbapi.com/?apikey=c9e12726&t=${title}&plot=full`, { responseType: 'text' })
       .subscribe(response => {
-        console.log(response);
+        const respParse = JSON.parse(response);
+        console.log(respParse);
+
+        this.url = respParse.Poster;
       });
   }
 }
