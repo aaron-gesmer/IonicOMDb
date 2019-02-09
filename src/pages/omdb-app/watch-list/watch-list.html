@@ -6,3 +6,17 @@
     <ion-title>Watch List</ion-title>
   </ion-navbar>
 </ion-header>
+
+<ion-content padding>
+  <div *ngIf="getTitles().length; else no_content" class="watch-list">
+    <ion-list>
+      <ion-item *ngFor="let title of getTitles()" padding>
+        <img [src]="title.imgUrl">{{ title.title }}
+      </ion-item>
+    </ion-list>
+  </div>
+  
+  <ng-template #no_content>
+    <h2 style="text-align: center">Watch List is empty</h2>
+  </ng-template>
+</ion-content>

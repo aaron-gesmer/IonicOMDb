@@ -23,11 +23,29 @@ export class OmdbApp {
   }
 
   addToAlreadyWatched() {
-    
+    this.omdbService.addToAlreadyWatched({
+      title: this.getTitle(),
+      imgUrl: this.getImgUrl()
+    });
+
+    const alert = this.alertController.create({
+      subTitle: `"${this.getTitle()}" has been added to your Already Watched list`,
+      buttons: ['Ok']
+    });
+    alert.present();
   }
 
   addToWatchList() {
+    this.omdbService.addToWatchList({
+      title: this.getTitle(),
+      imgUrl: this.getImgUrl()
+    });
 
+    const alert = this.alertController.create({
+      subTitle: `"${this.getTitle()}" has been added to your Watch list`,
+      buttons: ['Ok']
+    });
+    alert.present();
   }
 
   public isValidSearch = () => this.titleSearch.isValidSearch();

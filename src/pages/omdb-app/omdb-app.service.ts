@@ -13,6 +13,9 @@ export class OmdbService {
 
   titleObjects: TitleObject[] = [];
 
+  alreadyWatched: TitleObject[] = [];
+  watchList: TitleObject[] = [];
+
 
   addTitle(title: string) {
     this.titles.push(title);
@@ -24,5 +27,13 @@ export class OmdbService {
 
   addTitleObject(titleObject: TitleObject) {
     this.titleObjects.push(titleObject);
+  }
+
+  addToAlreadyWatched(titleObject: TitleObject) {
+    this.alreadyWatched.push(titleObject);
+  }
+
+  addToWatchList(titleObject: TitleObject) {
+    this.watchList.push(titleObject);
   }
 }
