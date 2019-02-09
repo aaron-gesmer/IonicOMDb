@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar class="navbar" color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Foo App Ionic</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let title of getTitles()" padding>
+        <img class="foo-img" [src]="title.imgUrl"> {{ title.title }}
+    </ion-item>
+  </ion-list>
+
+
+
+  <!-- <h1>{{ bar() }}</h1> -->
+  <!-- <table>
+    <tr *ngFor="let title of getTitles()">
+      <td>
+        <img [src]="title.imgUrl" width="20%">
+      </td>
+      <td>
+        <h2 style="padding-right: 30%">{{ title.title }}</h2>
+      </td>
+    </tr>
+  </table> -->
+
+
+
+  <!-- <ul>
+    <li *ngFor="let title of getTitles()">
+      <img [src]="title.imgUrl">
+      <h2>{{ title.title }}</h2>
+    </li>
+  </ul> -->
+</ion-content>

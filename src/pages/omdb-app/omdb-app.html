@@ -1,28 +1,55 @@
 <ion-header>
-    <ion-navbar class="navbar">
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>OMDb Ionic</ion-title>
-    </ion-navbar>
+  <ion-navbar class="navbar" color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>OMDb Search</ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <div class="search-omdb" padding>
-    <input #movieTitle
-      type="text"
+    <ion-searchbar #movieTitle
+      type="search"
       (keyup.enter)="search(movieTitle.value)"
-      placeholder="Search for a title..." 
-      padding />
-    <button ion-button color="primary" (click)="search(movieTitle.value)">Search</button>
+      placeholder="Search for a title..."
+      clear-input=true
+      padding>
+    </ion-searchbar>
   </div>
 
-  <div *ngIf="searched" class="movie-result" padding>
-    <h2>{{ title }} ({{ year }})</h2>
-    <img [src]="url">
-    <p>{{ plot }}</p>
+  <div *ngIf="isValidSearch()" class="valid-search-result" padding>
+    <h1>{{ getTitle() }} ({{ getYear() }})</h1>
+    <h3>Directed by {{ getDirector() }}</h3>
+    <img [src]="getImgUrl()">
+    <p>{{ getPlot() }}</p>
 
-    <button ion-button color="primary" (click)="foo()">Add to Already Watched</button>
-    <button ion-button color="secondary" (click)="bar()">Add to Watch List</button>
+    <h4>Awards: {{ getAwards() }}</h4>
+    <h4>Box Office: {{ getBoxOffice() }}</h4>
+    <table>
+      <tr>
+        <td><img src="../../assets/imgs/imdb-logo.png" height="10%"></td>
+        <td><h2>{{ getImdbRating() }}</h2></td>
+      </tr>
+      <tr>
+        <td><img src="../../assets/imgs/rotten-tomatoes-logo.png" height="20%"></td>
+        <td><h2>{{ getRottenTomatoesRating() }}</h2></td>
+      </tr>
+      <tr>
+        <td><img src="../../assets/imgs/metacritic-logo.png" height="8%"></td>
+        <td><h2>{{ getMetacriticRating() }}</h2></td>
+      </tr>
+    </table>
+
+    <button ion-button color="primary" (click)="addToAlreadyWatched()">Add to Already Watched</button>
+    <button ion-button color="secondary" (click)="addToWatchList()">Add to Watch List</button>
+  </div>
+
+  <div *ngIf="isNotFound()">
+    <p>No movie found with that title</p>
+  </div>
+
+  <div *ngIf="isNotProvided()">
+    <p>Please provide a title to search for</p>
   </div>
 </ion-content>
