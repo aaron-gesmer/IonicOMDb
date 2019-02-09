@@ -6,3 +6,17 @@
     <ion-title>Already Watched</ion-title>
   </ion-navbar>
 </ion-header>
+
+<ion-content padding>
+  <div *ngIf="getTitles().length; else no_content" class="already-watched-list">
+    <ion-list>
+      <ion-item *ngFor="let title of getTitles()" padding>
+        <img [src]="title.imgUrl">{{ title.title }}
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <ng-template #no_content>
+    <h2 style="text-align: center">Already Watched list is empty</h2>
+  </ng-template>
+</ion-content>
