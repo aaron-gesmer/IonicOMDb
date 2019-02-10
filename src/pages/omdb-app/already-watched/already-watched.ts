@@ -13,5 +13,9 @@ export class AlreadyWatched {
   getTitles() {
     return this.omdbService.alreadyWatched;
   }
+
+  removeTitleFromAlreadyWatched(title: string) {
+    this.omdbService.removeFromAlreadyWatched(title);
+  }
 }
 

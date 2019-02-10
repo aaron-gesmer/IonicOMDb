@@ -27,12 +27,6 @@ export class OmdbApp {
       title: this.getTitle(),
       imgUrl: this.getImgUrl()
     });
-
-    const alert = this.alertController.create({
-      subTitle: `"${this.getTitle()}" has been added to your Already Watched list`,
-      buttons: ['Ok']
-    });
-    alert.present();
   }
 
   addToWatchList() {
@@ -40,12 +34,6 @@ export class OmdbApp {
       title: this.getTitle(),
       imgUrl: this.getImgUrl()
     });
-
-    const alert = this.alertController.create({
-      subTitle: `"${this.getTitle()}" has been added to your Watch list`,
-      buttons: ['Ok']
-    });
-    alert.present();
   }
 
   public isValidSearch = () => this.titleSearch.isValidSearch();
@@ -63,12 +51,4 @@ export class OmdbApp {
   public getImdbRating = () => this.titleSearch.getImdbRating();
   public getRottenTomatoesRating = () => this.titleSearch.getRottenTomatoesRating();
   public getMetacriticRating = () => this.titleSearch.getMetacriticRating();
-
-  //   const alert = this.alertController.create({
-  //     // title: `${this.title} has been added to your "Already Watched" list`,
-  //     subTitle: `"${this.title}" has been added to your Already Watched list`,
-  //     buttons: ['Ok']
-  //   });
-  //   alert.present();
-  // }
 }

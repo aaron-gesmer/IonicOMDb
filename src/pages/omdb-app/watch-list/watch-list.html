@@ -10,9 +10,15 @@
 <ion-content padding>
   <div *ngIf="getTitles().length; else no_content" class="watch-list">
     <ion-list>
-      <ion-item *ngFor="let title of getTitles()" padding>
-        <img [src]="title.imgUrl">{{ title.title }}
-      </ion-item>
+      <ion-item-sliding *ngFor="let title of getTitles()" padding>
+        <ion-item>
+          <h1><img [src]="title.imgUrl">{{ title.title }}</h1>
+        </ion-item>
+    
+        <ion-item-options slide="end">
+          <button ion-button color="danger" (click)="removeTitleFromWatchList(title.title)">Delete</button>
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-list>
   </div>
   
