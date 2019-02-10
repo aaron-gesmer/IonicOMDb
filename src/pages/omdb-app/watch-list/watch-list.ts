@@ -13,4 +13,8 @@ export class WatchList {
   getTitles() {
     return this.omdbService.watchList;
   }
+
+  removeTitleFromWatchList(title: string) {
+    this.omdbService.removeFromWatchList(title);
+  }
 }

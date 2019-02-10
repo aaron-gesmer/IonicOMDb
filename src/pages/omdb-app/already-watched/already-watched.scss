@@ -1,3 +1,10 @@
-.already-watched-list img{
-  width: 10%;
+.already-watched-list img {
+  float: left;
+  width: 20%;
+}
+
+.already-watched-list h1 {
+  float: clear;
+  text-align: center;
+  vertical-align: text-bottom;  
 }
