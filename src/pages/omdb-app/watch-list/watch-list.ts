@@ -12,7 +12,7 @@ export class WatchList {
   constructor(private omdbService: OmdbService, private alertController: AlertController) { }
 
   getTitles() {
-    return this.omdbService.watchList;
+    return JSON.parse(localStorage.getItem('watchList'));
   }
 
   removeTitleFromWatchList(title: string) {

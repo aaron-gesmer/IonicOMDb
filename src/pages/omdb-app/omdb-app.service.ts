@@ -37,6 +37,7 @@ export class OmdbService {
       this.alreadyWatched.push(titleObject);
       this.alreadyWatched.sort(this.compareToSort);
       this.alertAddedToAlreadyWatchedList(titleObject);
+      localStorage.setItem('alreadyWatched', JSON.stringify(this.alreadyWatched));
     }
   }
 
@@ -50,6 +51,7 @@ export class OmdbService {
         this.watchList.push(titleObject);
         this.watchList.sort(this.compareToSort);
         this.alertAddedToWatchList(titleObject);
+        localStorage.setItem('watchList', JSON.stringify(this.watchList));
       }
     }
   }
@@ -59,18 +61,21 @@ export class OmdbService {
     this.addToAlreadyWatched(titleObject);
     const index = this.watchList.indexOf(titleObject);
     this.watchList.splice(index, 1);
+    localStorage.setItem('watchList', JSON.stringify(this.watchList));
   }
 
   removeFromAlreadyWatched(title: string) {
     const titleObject = this.alreadyWatched.find(titleObject => titleObject.title === title);
     const index = this.alreadyWatched.indexOf(titleObject);
     this.alreadyWatched.splice(index, 1);
+    localStorage.setItem('alreadyWatched', JSON.stringify(this.alreadyWatched));
   }
 
   removeFromWatchList(title: string) {
     const titleObject = this.watchList.find(titleObject => titleObject.title === title);
     const index = this.watchList.indexOf(titleObject);
     this.watchList.splice(index, 1);
+    localStorage.setItem('watchList', JSON.stringify(this.watchList));
   }
 
   private alertAddedToAlreadyWatchedList(titleObject: TitleObject) {
