@@ -13,17 +13,18 @@
       type="search"
       placeholder="Search for a title..."
       clear-input=true
-      padding>
+      padding
+      margin>
     </ion-searchbar>
 
     <ion-list>
       <ion-item-sliding *ngFor="let title of getTitles()">
-        <ion-item>
+        <ion-item (click)="toggleFoo()">
           <img [src]="title.imgUrl"><h1>{{ title.title }}</h1>
         </ion-item>
 
-        <ion-item-options slide="end">
-          <button ion-button color="danger" (click)="removeTitleFromAlreadyWatched(title.title)">Delete</button>
+        <ion-item-options side="end">
+          <button ion-button color="danger" (click)="removeTitleFromAlreadyWatched(title.title)"><ion-icon name="trash"></ion-icon>Delete</button>
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>
