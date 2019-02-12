@@ -14,7 +14,7 @@ export class AlreadyWatched {
   constructor(private omdbService: OmdbService, private alertController: AlertController) { }
 
   getTitles() {
-    return this.omdbService.alreadyWatched;
+    return JSON.parse(localStorage.getItem('alreadyWatched'));
   }
 
   removeTitleFromAlreadyWatched(title: string) {
