@@ -21,6 +21,7 @@ export class SearchTitleService {
   private imdbRating: string;
   private rottenTomatoesRating: string;
   private metacriticRating: string;
+  private type: string;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -59,6 +60,8 @@ export class SearchTitleService {
           this.imdbRating = responseBody.Ratings[0].Value;
           this.rottenTomatoesRating = responseBody.Ratings[1] ? responseBody.Ratings[1].Value : '--';
           this.metacriticRating = responseBody.Ratings[2] ? responseBody.Ratings[2].Value : '--';
+
+          this.type = responseBody.Type;
         }
       });
   }
@@ -78,4 +81,5 @@ export class SearchTitleService {
   public getImdbRating = () => this.imdbRating;
   public getRottenTomatoesRating = () => this.rottenTomatoesRating;
   public getMetacriticRating = () => this.metacriticRating;
+  public getType = () => this.type;
 }

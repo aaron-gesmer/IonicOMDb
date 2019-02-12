@@ -17,4 +17,8 @@ export class WatchList {
   removeTitleFromWatchList(title: string) {
     this.omdbService.removeFromWatchList(title);
   }
+
+  watchedTitle(title: string) {
+    this.omdbService.watchedTitle(title);
+  }
 }

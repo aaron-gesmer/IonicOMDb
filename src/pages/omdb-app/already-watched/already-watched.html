@@ -7,12 +7,19 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <div *ngIf="getTitles().length; else no_content" class="already-watched-list">      
+    <ion-searchbar #title
+      type="search"
+      placeholder="Search for a title..."
+      clear-input=true
+      padding>
+    </ion-searchbar>
+
     <ion-list>
-      <ion-item-sliding *ngFor="let title of getTitles()" padding>
+      <ion-item-sliding *ngFor="let title of getTitles()">
         <ion-item>
-          <h1><img [src]="title.imgUrl">{{ title.title }}</h1>
+          <img [src]="title.imgUrl"><h1>{{ title.title }}</h1>
         </ion-item>
 
         <ion-item-options slide="end">
