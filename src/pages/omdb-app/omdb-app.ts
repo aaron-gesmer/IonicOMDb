@@ -25,6 +25,8 @@ export class OmdbApp {
   addToAlreadyWatched() {
     this.omdbService.addToAlreadyWatched({
       title: this.getTitle(),
+      year: this.getYear(),
+      type: this.getType(),
       imgUrl: this.getImgUrl()
     });
   }
@@ -32,6 +34,8 @@ export class OmdbApp {
   addToWatchList() {
     this.omdbService.addToWatchList({
       title: this.getTitle(),
+      year: this.getYear(),
+      type: this.getType(),
       imgUrl: this.getImgUrl()
     });
   }
@@ -51,4 +55,5 @@ export class OmdbApp {
   public getImdbRating = () => this.titleSearch.getImdbRating();
   public getRottenTomatoesRating = () => this.titleSearch.getRottenTomatoesRating();
   public getMetacriticRating = () => this.titleSearch.getMetacriticRating();
+  public getType = () => this.titleSearch.getType();
 }

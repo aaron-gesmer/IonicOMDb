@@ -4,7 +4,14 @@ import { AlertController } from 'ionic-angular';
 
 export interface TitleObject {
   title: string;
+  year: string;
+  type: string;
   imgUrl: string;
+}
+
+enum TitleType {
+  Movie = 'Movie',
+  TvSeries = 'TV Series'
 }
 
 @Injectable()
@@ -15,11 +22,20 @@ export class OmdbService {
 
   constructor(private alertController: AlertController) { }
 
+  private compareToSort(x: TitleObject, y: TitleObject) {
+   if (x.title < y.title)
+     return -1;
+   if (x.title > y.title)
+     return 1;
+   return 0;
+  }
+
   addToAlreadyWatched(titleObject: TitleObject) {
     if (this.alreadyWatched.find(title => title.title === titleObject.title)) {
       this.alertAlreadyWatchedContainsTitle(titleObject);
     } else {
       this.alreadyWatched.push(titleObject);
+      this.alreadyWatched.sort(this.compareToSort);
       this.alertAddedToAlreadyWatchedList(titleObject);
     }
   }
@@ -32,9 +48,17 @@ export class OmdbService {
         this.alertWatchListContainsTitle(titleObject);
       } else {
         this.watchList.push(titleObject);
+        this.watchList.sort(this.compareToSort);
         this.alertAddedToWatchList(titleObject);
       }
     }
+  }
+
+  watchedTitle(title: string) {
+    const titleObject = this.watchList.find(titleObject => titleObject.title === title);
+    this.addToAlreadyWatched(titleObject);
+    const index = this.watchList.indexOf(titleObject);
+    this.watchList.splice(index, 1);
   }
 
   removeFromAlreadyWatched(title: string) {

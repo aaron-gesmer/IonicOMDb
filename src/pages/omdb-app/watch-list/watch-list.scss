@@ -1,10 +1,9 @@
 .watch-list img {
-  float: left;
   width: 20%;
 }
 
-.watch-list h1 {
-  float: clear;
-  text-align: center;
-  vertical-align: text-bottom;
+.watch-list ion-searchbar {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
